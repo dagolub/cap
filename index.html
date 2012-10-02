@@ -1,30 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>caPlayer</title>
 
     <link href="/css/style.css" rel="stylesheet">
 
-    <script src="/libs/jquery.js"></script>
+    <script src="/libs/jquery-1.8.2.js"></script>
     <script src="/libs/sm.js"></script>
     <script src="/js/cap.js"></script>
 </head>
 <body>
 <div id="wrap">
-    <h3>Custom Audio HTML5 Player</h3>
+    <h3>Custom Audio HTML5 Player <br /> <small><i>Special for audiomack</i></small></h3>
 
-    <div style="width: 300px;">
-        <audio id="mySound1" src="/mp3/sample.mp3" color="#55ff55"></audio>
-    </div>
     <div style="width: 400px;">
-    <audio id="mySound2" src="/mp3/sample2.mp3" color="#fe4444"></audio>
-    </div>
-    <div style="width: 500px;">
-        <audio id="mySound3" src="/mp3/sample.mp3" color="orange"></audio>
-    </div>
-    <div style="width: 600px;">
-        <audio id="mySound4" src="/mp3/sample2.mp3" color="#0069e1"></audio>
+        <audio id="mySound1" src="http://music.audiomack.com/albums/alex-isley/the-loveart-memoirs-ep/dontdo.mp3?Expires=1349218343&Signature=Iy73-zN76y6mpjjVXhE-Kbo03VxgXvErCGmXbr8JPGK6qCt7IQHFs0gdBVD4dW7MBnIT3sh9g2WpaoJw~EUDJ7lMHUU4hJtOFu5b82J2-y7ggko0pqLU38QulJG1eEpUi~JrF5k3WIEq1cQ88czBF~Dadb5kEDzc0P1x-pM5itk_&Key-Pair-Id=APKAIKAIRXBA2H7FXITA" color="#ff8a00"></audio>
+            <div id="playlist">
+                <div class="song play">
+                    <div class="index">01.</div>
+                    <div class="title"><a href="http://music.audiomack.com/albums/alex-isley/the-loveart-memoirs-ep/loveart-intro.mp3?Expires=1349218343&Signature=fvr78B3pTf~JVh14~zdA4IKsKeZ9qt8kGYKmAvW952A24QCU7KklqOiq~3VFXOzMxMO0Z40eD33AdKN0FzzHi55bLVTnVQlHbA1Gvj~h~b0OeclQXti2zniHxm4t~BFrRhhEltMdQjiMiXsw3G1nIeOdPslMsP0gk5wvVBc~-Us_&Key-Pair-Id=APKAIKAIRXBA2H7FXITA">Love/Art: intro</a></div>
+                    <div class="spacer"></div>
+                </div>
+                <div class="song">
+                    <div class="index">02.</div>
+                    <div class="title"><a href="http://music.audiomack.com/albums/alex-isley/the-loveart-memoirs-ep/dontdo.mp3?Expires=1349218343&Signature=Iy73-zN76y6mpjjVXhE-Kbo03VxgXvErCGmXbr8JPGK6qCt7IQHFs0gdBVD4dW7MBnIT3sh9g2WpaoJw~EUDJ7lMHUU4hJtOFu5b82J2-y7ggko0pqLU38QulJG1eEpUi~JrF5k3WIEq1cQ88czBF~Dadb5kEDzc0P1x-pM5itk_&Key-Pair-Id=APKAIKAIRXBA2H7FXITA">Don't/Do</a></div>
+                    <div class="spacer"></div>
+                </div>
+                <div class="song">
+                    <div class="index">03.</div>
+                    <div class="title"><a href="http://music.audiomack.com/albums/alex-isley/the-loveart-memoirs-ep/my-theme.mp3?Expires=1349218343&Signature=EPMn3ck9teQyR9Z~dp5kN~CgudYd2rVToywNa259LLru0UF0-ziYJO8jtjmHTN3vt-1MQe3TRiwadKDHskcMQsHyL46Uq1P9XN51Jnte0hpbdiSWN7fCpliPAM0RQa9PM8B9~nMe2NkJsoo9C51KGE8fv-VhGC7h4bsMFIn3t0o_&Key-Pair-Id=APKAIKAIRXBA2H7FXITA">My Theme</a></div>
+                    <div class="spacer"></div>
+                </div>
+            </div>
+
     </div>
 </div>
 

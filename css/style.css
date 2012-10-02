@@ -11,9 +11,7 @@ p {
     position: relative;
     padding: 20px;
 }
-#wrap div {
-    margin-bottom: 10px;
-}
+
 
 .caPlayer {
     height: 43px;
@@ -127,7 +125,63 @@ p {
 .caPlayer .ps.played {
     background: url("/imgs/pause.gif") no-repeat;
 }
-
+#playlist {
+    width: 400px;
+    background: #EBEBEB;
+    margin-bottom: 20px;
+}
+#playlist .song {
+    display: block;
+    clear: both;
+    height: 26px;
+    padding: 5px 0;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid whiteSmoke;
+}
+#playlist .song .index {
+    font: normal 23px 'BebasNeueRegular', Arial;
+    color: #414039;
+}
+#playlist .song .title {
+    overflow: hidden;
+    text-align: left;
+    color: #E2E2E2;
+    width: 350px;
+    padding-right: 0;
+    height: 31px;
+}
+#playlist .song .title a {
+    font: bold 12px Arial, Verdana;
+    color: #1C1C1C;
+}
+#playlist .song .spacer {
+    clear: both;
+    height: 0;
+}
+#playlist .song div {
+    color: #5F5F5F;
+    float: left;
+    display: block;
+    font-size: 14px;
+    line-height: 26px;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    background: transparent none;
+}
+#playlist .song.play {
+    background-color: black;
+}
+#playlist .song.play {
+    background: black;
+    border-bottom: 1px solid gray;
+}
+#playlist .song.play .index {
+    color: white;
+}
+#playlist .song.play .title a {
+    color: white;
+}
 /* Default Skin */
 
 .caPlayer .ps.paused, .caPlayer .progress .bar .barPlaying, .caPlayer .ps.played, .caPlayer .vol .bar  {
