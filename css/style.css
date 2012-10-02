@@ -1,0 +1,126 @@
+html,body {
+    margin:0;
+    padding: 0;
+    font: 12px/24px Arial;
+}
+p {
+
+    padding: 10px;
+}
+#wrap {
+    position: relative;
+    padding: 20px;
+}
+#wrap div {
+    margin-bottom: 10px;
+}
+
+.caPlayer {
+    height: 43px;
+    position: relative;
+    display: block;
+    background: url("/imgs/bg.gif") repeat-x;
+}
+
+.caPlayer i {
+    display: block;
+    text-decoration: none;
+}
+
+.caPlayer .ps {
+    width: 68px;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+.caPlayer .vol {
+    width: 50px;
+    height: 100%;
+    cursor: pointer;
+    background: grey;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.caPlayer .vol .bar {
+    height: 17px;
+    width: 30px;
+    background: url("/imgs/volBG.gif");
+    position: absolute;
+    top:13px;
+    left: 10px;
+}
+
+.caPlayer .progress {
+    height: 100%;
+
+    margin: 0 50px 0 68px;
+    position: relative;
+}
+
+.caPlayer .vol {
+    background: url("/imgs/volumeSliderProgress.png") 1px 0;
+}
+
+.caPlayer .progress .bar {
+    height: 7px;
+    background: #1c1c1c;
+    top: 18px;
+    margin: 0 35px;
+    position: relative;
+}
+
+.caPlayer .progress .bar .barLoading{
+    height: 1px;
+    top: 3px;
+    background: #3e3e3e;
+    position: absolute;
+    width: 0;
+    z-index: 1;
+}
+.caPlayer .progress .bar .barPlaying{
+    height: 3px;
+    top: 2px;
+
+    position: absolute;
+    width: 0;
+    z-index: 5;
+}
+.caPlayer .progress .currentTime,.caPlayer .progress .totalTime  {
+    position: absolute;
+    top:0;
+    width: 25px;
+    font: bold 10px/43px Arial;
+    text-align: right;
+    color: #ffffff;
+}
+
+.caPlayer .progress .currentTime{
+    left: 5px;
+}
+
+.caPlayer .progress .totalTime {
+    right: 5px;
+}
+
+.caPlayer .ps.paused:hover {
+    background: #000000 url("/imgs/playWhite.gif") no-repeat;
+}
+.caPlayer .ps.played:hover {
+    background: #000000 url("/imgs/pauseWhite.gif") no-repeat;
+}
+.caPlayer .ps.paused {
+    background: url("/imgs/play.gif") no-repeat;
+}
+.caPlayer .ps.played {
+    background: url("/imgs/pause.gif") no-repeat;
+}
+
+/* Default Skin */
+
+.caPlayer .ps.paused, .caPlayer .progress .bar .barPlaying, .caPlayer .ps.played, .caPlayer .vol .bar  {
+    background-color: orange;
+}
