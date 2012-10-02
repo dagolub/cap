@@ -91,10 +91,10 @@ function progressLoading() {
 function progressPlaying() {
     var id = this.id;
 
-    var current = (this.position/this.duration)*100;
+    var current = (this.position/this.durationEstimate)*100;
     $("#" + id + " .barPlaying").css( 'width', current +'%');
     $("#" + id + " .currentTime").html(ms2time(this.position));
-    $("#" + id + " .totalTime").html(ms2time(this.duration));
+    $("#" + id + " .totalTime").html(ms2time(this.durationEstimate));
 }
 
 function ms2time(ms){

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c632cb99-dec5-45b2-bccd-2c69b67b3813" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/cap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/cap.js" afterPath="$PROJECT_DIR$/js/cap.js" />
     </list>
     <ignored path="public.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="59" selection-start="972" selection-end="972" vertical-scroll-proportion="0.6315789">
+            <state line="64" column="59" selection-start="972" selection-end="972" vertical-scroll-proportion="-14.4">
               <folding />
             </state>
           </provider>
@@ -52,10 +51,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cap.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="cap.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/cap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="20" selection-start="1992" selection-end="1992" vertical-scroll-proportion="0.0">
+            <state line="96" column="66" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.8">
               <folding />
             </state>
           </provider>
@@ -75,8 +74,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/cap.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/cap.js" />
       </list>
     </option>
   </component>
@@ -338,13 +337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="20" selection-start="1992" selection-end="1992" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imgs/volBG.gif">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -352,7 +344,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="59" selection-start="972" selection-end="972" vertical-scroll-proportion="0.6315789">
+        <state line="64" column="59" selection-start="972" selection-end="972" vertical-scroll-proportion="-14.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="66" selection-start="2829" selection-end="2829" vertical-scroll-proportion="0.8">
           <folding />
         </state>
       </provider>
