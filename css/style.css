@@ -89,6 +89,15 @@ p {
     width: 0;
     z-index: 5;
 }
+.caPlayer .progress .bar .barPlaying i{
+    width: 2px;
+    height: 7px;
+    background: #ffffff;
+    position: absolute;
+    top: -2px;
+    right: -1px;
+}
+
 .caPlayer .progress .currentTime,.caPlayer .progress .totalTime  {
     position: absolute;
     top:0;

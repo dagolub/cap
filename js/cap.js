@@ -4,7 +4,7 @@ var playerTPL = '<i class="caPlayer">' +
                     '<i class="progress">' +
                         '<i class="currentTime">00:00</i>' +
                         '<i class="bar">' +
-                            '<i class="barPlaying"></i>' +
+                            '<i class="barPlaying"><i></i></i>' +
                             '<i class="barLoading"></i>' +
                         '</i>' +
                         '<i class="totalTime">00:00</i>' +
@@ -24,6 +24,15 @@ $(document).ready(function(){
 
 
 });
+function finishPlaying() {
+    var id = this.id;
+    $("#"+id+" .ps").removeClass('played').addClass('paused');
+}
+function startPlaying() {
+    var id = this.id;
+    $("#"+id+" .ps").removeClass('paused').addClass('played');
+}
+
 
 function initSounds() {
     $("audio").each(function(){
@@ -33,6 +42,9 @@ function initSounds() {
         var soundConfig = {
             id: id,
             url: url,
+            onpause: finishPlaying,
+            onfinish: finishPlaying,
+            onplay: startPlaying,
             whileplaying: progressPlaying,
             whileloading: progressLoading
             };
@@ -42,6 +54,7 @@ function initSounds() {
         $("#"+id).replaceWith($(playerTPL).attr('id',id));
         $("#" + id + " .ps").click(play);
         $("#" + id + " .vol").click(volume);
+        $("#" + id + " .progress").click(progress);
         applySkinColor(id,color)
     });
 
@@ -70,14 +83,37 @@ function volume(e) {
     $("#"+id+ " .vol .bar").css('width', parseInt(30*(vol/100)) +"px");
 }
 
+function progress(e) {
+    var id = $(this).parent().attr('id');
+    var x = e.pageX - this.offsetLeft;
+    var duration = soundManager.getSoundById(id).durationEstimate;
+    var min = 35;
+    var max = $(this).width()-35;
+
+    console.log('min: '+ min);
+    console.log('max: '+ max);
+
+    var pos = 0;
+    if ( x < min) {
+        pos = 0;
+    } else if ( x > max) {
+        pos = 1;
+    } else {
+        pos = ( x - min ) / max;
+    }
+
+    soundManager.setPosition(id,parseInt(pos*duration));
+    soundManager.play(id);
+}
+
 function play() {
     var id = $(this).parent().attr('id');
     if ( $(this).hasClass('paused') ) {
         soundManager.play(id);
-        $(this).removeClass('paused').addClass('played');
+
     } else {
         soundManager.pause(id);
-        $(this).removeClass('played').addClass('paused');
+
     }
 }
 
