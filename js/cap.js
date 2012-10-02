@@ -20,9 +20,7 @@ var skinCSSRules = [
 var sounds = [];
 
 $(document).ready(function(){
-    soundManager.setup({url: '/libs/swf/', onready: initSounds});
-
-
+    soundManager.setup({url: '/libs/swf/', useHTML5Audio: true, onready: initSounds});
 });
 function finishPlaying() {
     var id = this.id;
@@ -34,33 +32,59 @@ function startPlaying() {
 }
 
 
+
 function initSounds() {
     $("audio").each(function(){
         var id = $(this).attr('id');
         var url = $(this).attr('src');
         var color = $(this).attr('color');
-        var soundConfig = {
-            id: id,
-            url: url,
-            onpause: finishPlaying,
-            onfinish: finishPlaying,
-            onplay: startPlaying,
-            whileplaying: progressPlaying,
-            whileloading: progressLoading
-            };
 
-        soundManager.createSound(soundConfig);
-
-        $("#"+id).replaceWith($(playerTPL).attr('id',id));
-        $("#" + id + " .ps").click(play);
-        $("#" + id + " .vol").click(volume);
-        $("#" + id + " .progress").click(progress);
-        applySkinColor(id,color)
+        initSound(id, url);
+        applySkinColor(id,color);
+        bindEvents(id)
     });
 
 }
 
+function bindEvents(id) {
+    $("#" + id + " .ps").click(play);
+    $("#" + id + " .vol").click(volume);
+    $("#" + id + " .progress").click(progress);
+
+    if ( playlist = $("div[for="+id+"] div.song") ) {
+        $(playlist).click(playSong);
+    }
+}
+
+function playSong(){
+    var id = $(this).parent().attr('for');
+    var url = $(this).find('a').attr('href');
+
+    initSound(id,url);
+    soundManager.play(id);
+
+    $(this).parent().find("div.song").removeClass('play');
+    $(this).addClass('play');
+
+    return false;
+}
+function initSound(id, url){
+    var soundConfig = {
+        id: id,
+        url: url,
+        onpause: finishPlaying,
+        onfinish: finishPlaying,
+        onplay: startPlaying,
+        whileplaying: progressPlaying,
+        whileloading: progressLoading
+    };
+    soundManager.destroySound(id);
+    soundManager.createSound(soundConfig);
+
+}
+
 function applySkinColor(id,color) {
+    $("#"+id).replaceWith($(playerTPL).attr('id',id));
     for ( i=0; i <skinCSSRules.length; i++ ) {
         $("#" + id  + skinCSSRules[i]).css('backgroundColor', color);
     }
@@ -90,9 +114,6 @@ function progress(e) {
     var min = 35;
     var max = $(this).width()-35;
 
-    console.log('min: '+ min);
-    console.log('max: '+ max);
-
     var pos = 0;
     if ( x < min) {
         pos = 0;
@@ -110,10 +131,8 @@ function play() {
     var id = $(this).parent().attr('id');
     if ( $(this).hasClass('paused') ) {
         soundManager.play(id);
-
     } else {
         soundManager.pause(id);
-
     }
 }
 
