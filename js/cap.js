@@ -1,6 +1,8 @@
 var playerTPL = '<i class="caPlayer">' +
                     '<i class="ps paused"></i>' +
-                    '<i class="vol"><i class="bar"></i></i>' +
+                    '<i class="next"></i>' +
+                    '<i class="prev"></i>' +
+                    '<i class="vol"><i class="bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></i></i>' +
                     '<i class="progress">' +
                         '<i class="currentTime">00:00</i>' +
                         '<i class="bar">' +
@@ -17,14 +19,21 @@ var skinCSSRules = [
                     '.caPlayer .vol .bar',
                     '.caPlayer .ps.played'
                    ];
+var skinCSSRulesMainBG = ['.caPlayer'];
+var skinCSSRulesVolumeBG = ['.caPlayer .vol .bar i','.caPlayer .vol'];
 var sounds = [];
 
 $(document).ready(function(){
-    soundManager.setup({url: '/libs/swf/', useHTML5Audio: true, onready: initSounds});
+    soundManager.setup({url: '/libs/swf/',  preferFlash: false, onready: initSounds});
 });
+function pausePlaying() {
+    var id = this.id;
+    $("#" + id + " .ps").removeClass('played').addClass('paused');
+}
 function finishPlaying() {
     var id = this.id;
-    $("#"+id+" .ps").removeClass('played').addClass('paused');
+    $("#" + id + " .ps").removeClass('played').addClass('paused');
+    $("#" + id + " .next").click();
 }
 function startPlaying() {
     var id = this.id;
@@ -38,9 +47,11 @@ function initSounds() {
         var id = $(this).attr('id');
         var url = $(this).attr('src');
         var color = $(this).attr('color');
+        var mainBG = $(this).attr('mainBG');
+        var volBG = $(this).attr('volBG');
 
         initSound(id, url);
-        applySkinColor(id,color);
+        applySkinColor(id,color, mainBG, volBG);
         bindEvents(id)
     });
 
@@ -51,8 +62,14 @@ function bindEvents(id) {
     $("#" + id + " .vol").click(volume);
     $("#" + id + " .progress").click(progress);
 
-    if ( playlist = $("div[for="+id+"] div.song") ) {
+    var playlist = $("div[for="+id+"] div.song");
+
+    if ( playlist.length > 0  ) {
         $(playlist).click(playSong);
+        $("#" + id + " .progress").css('marginLeft','104px');
+
+        $("#" + id + " .prev").show().click(prevSong);
+        $("#" + id + " .next").show().click(nextSong);
     }
 }
 
@@ -72,7 +89,7 @@ function initSound(id, url){
     var soundConfig = {
         id: id,
         url: url,
-        onpause: finishPlaying,
+        onpause: pausePlaying,
         onfinish: finishPlaying,
         onplay: startPlaying,
         whileplaying: progressPlaying,
@@ -80,13 +97,18 @@ function initSound(id, url){
     };
     soundManager.destroySound(id);
     soundManager.createSound(soundConfig);
-
 }
 
-function applySkinColor(id,color) {
+function applySkinColor(id,color,mainBG,volBG) {
     $("#"+id).replaceWith($(playerTPL).attr('id',id));
-    for ( i=0; i <skinCSSRules.length; i++ ) {
+    for ( i=0; i < skinCSSRules.length; i++ ) {
         $("#" + id  + skinCSSRules[i]).css('backgroundColor', color);
+    }
+    for ( i=0; i < skinCSSRulesMainBG.length; i++ ) {
+        $("#" + id  + skinCSSRulesMainBG[i]).css('backgroundColor', mainBG);
+    }
+    for ( i=0; i < skinCSSRulesVolumeBG.length; i++ ) {
+        $("#" + id  + skinCSSRulesVolumeBG[i]).css('backgroundColor', volBG);
     }
 }
 
@@ -103,7 +125,7 @@ function volume(e) {
         vol = parseInt( ((x-30)/30)*100);
     }
 
-    soundManager.setVolume(id,vol)
+    soundManager.setVolume(id, vol);
     $("#"+id+ " .vol .bar").css('width', parseInt(30*(vol/100)) +"px");
 }
 
@@ -113,8 +135,8 @@ function progress(e) {
     var duration = soundManager.getSoundById(id).durationEstimate;
     var min = 35;
     var max = $(this).width()-35;
-
     var pos = 0;
+
     if ( x < min) {
         pos = 0;
     } else if ( x > max) {
@@ -136,6 +158,30 @@ function play() {
     }
 }
 
+function nextSong() {
+    var id = $(this).parent().attr('id');
+
+    var nextSong = $("div[for="+id+"] div.song.play").next();
+
+    if ( nextSong.hasClass('song') ) {
+        nextSong.click();
+    } else {
+        $("div[for="+id+"] div.song:first-child").click();
+    }
+}
+
+function prevSong() {
+    var id = $(this).parent().attr('id');
+
+    var prevSong = $("div[for="+id+"] div.song.play").prev();
+
+    if ( prevSong.hasClass('song') ) {
+        prevSong.click();
+    } else {
+        $("div[for="+id+"] div.song:last-child").click();
+    }
+}
+
 function progressLoading() {
    var id = this.id;
 
@@ -152,7 +198,7 @@ function progressPlaying() {
     $("#" + id + " .totalTime").html(ms2time(this.durationEstimate));
 }
 
-function ms2time(ms){
+function ms2time(ms) {
     var sec = parseInt(ms/1000);
     var min = parseInt(sec/60)
     var sec = sec % 60;

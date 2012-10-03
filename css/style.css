@@ -3,21 +3,21 @@ html,body {
     padding: 0;
     font: 12px/24px Arial;
 }
+
 p {
 
     padding: 10px;
 }
+
 #wrap {
     position: relative;
     padding: 20px;
 }
 
-
 .caPlayer {
     height: 43px;
     position: relative;
     display: block;
-    background: url("/imgs/bg.gif") repeat-x;
 }
 
 .caPlayer i {
@@ -34,33 +34,66 @@ p {
     left: 0;
 }
 
+.caPlayer .next, .caPlayer .prev {
+    display: none;
+    height: 43px;
+    width: 18px;
+    float: left;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+
+.caPlayer .next {
+    background: url("../imgs/nextBlack.gif");
+    left: 86px;
+}
+
+.caPlayer .prev {
+    background: url("../imgs/prevBlack.gif");
+    left: 68px;
+}
+
+.caPlayer .next:hover {
+    background: url("../imgs/next.gif");
+}
+
+.caPlayer .prev:hover {
+    background: url("../imgs/prev.gif");
+}
+
 .caPlayer .vol {
     width: 50px;
     height: 100%;
     cursor: pointer;
-    background: grey;
     position: absolute;
     right: 0;
     top: 0;
 }
+
 .caPlayer .vol .bar {
     height: 17px;
     width: 30px;
-    background: url("/imgs/volBG.gif");
     position: absolute;
     top:13px;
     left: 10px;
+    overflow: hidden;
+}
+.caPlayer .vol .bar i{
+    width: 2px;
+    height: 17px;
+    float: left;
+    margin-left: 2px;
 }
 
 .caPlayer .progress {
     height: 100%;
-
     margin: 0 50px 0 68px;
     position: relative;
 }
 
 .caPlayer .vol {
-    background: url("/imgs/volumeSliderProgress.png") 1px 0;
+    background: url("../imgs/volumeBasic.gif") 1px 0;
 }
 
 .caPlayer .progress .bar {
@@ -79,6 +112,7 @@ p {
     width: 0;
     z-index: 1;
 }
+
 .caPlayer .progress .bar .barPlaying{
     height: 3px;
     top: 2px;
@@ -87,6 +121,7 @@ p {
     width: 0;
     z-index: 5;
 }
+
 .caPlayer .progress .bar .barPlaying i{
     width: 2px;
     height: 7px;
@@ -114,21 +149,26 @@ p {
 }
 
 .caPlayer .ps.paused:hover {
-    background: #000000 url("/imgs/playWhite.gif") no-repeat;
+    background: #000000 url("../imgs/playWhite.gif") no-repeat;
 }
+
 .caPlayer .ps.played:hover {
-    background: #000000 url("/imgs/pauseWhite.gif") no-repeat;
+    background: #000000 url("../imgs/pauseWhite.gif") no-repeat;
 }
+
 .caPlayer .ps.paused {
-    background: url("/imgs/play.gif") no-repeat;
+    background: url("../imgs/play.gif") no-repeat;
 }
+
 .caPlayer .ps.played {
-    background: url("/imgs/pause.gif") no-repeat;
+    background: url("../imgs/pause.gif") no-repeat;
 }
+
 #playlist {
     background: #EBEBEB;
     margin-bottom: 20px;
 }
+
 #playlist .song {
     display: block;
     clear: both;
@@ -137,10 +177,12 @@ p {
     border-top: 1px solid #E0E0E0;
     border-bottom: 1px solid whiteSmoke;
 }
+
 #playlist .song .index {
     font: normal 23px 'BebasNeueRegular', Arial;
     color: #414039;
 }
+
 #playlist .song .title {
     overflow: hidden;
     text-align: left;
@@ -149,14 +191,17 @@ p {
     padding-right: 0;
     height: 31px;
 }
+
 #playlist .song .title a {
     font: bold 12px Arial, Verdana;
     color: #1C1C1C;
 }
+
 #playlist .song .spacer {
     clear: both;
     height: 0;
 }
+
 #playlist .song div {
     color: #5F5F5F;
     float: left;
@@ -168,21 +213,36 @@ p {
     overflow: hidden;
     background: transparent none;
 }
+
 #playlist .song.play {
     background-color: black;
 }
+
 #playlist .song.play {
     background: black;
     border-bottom: 1px solid gray;
 }
+
 #playlist .song.play .index {
     color: white;
 }
+
 #playlist .song.play .title a {
     color: white;
 }
-/* Default Skin */
 
+/* Default Skin */
+/* Basic color */
 .caPlayer .ps.paused, .caPlayer .progress .bar .barPlaying, .caPlayer .ps.played, .caPlayer .vol .bar  {
-    background-color: orange;
+    background-color: #ff8a00;
+}
+
+/* Volume Color */
+.caPlayer .vol .bar i, .caPlayer .vol {
+    background-color: #5a584f;
+}
+
+/* Main Background */
+.caPlayer {
+    background-color: #393933;
 }
