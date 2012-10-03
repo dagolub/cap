@@ -148,21 +148,23 @@ p {
     right: 5px;
 }
 
-.caPlayer .ps.paused:hover {
-    background: #000000 url("../imgs/playWhite.gif") no-repeat;
-}
-
-.caPlayer .ps.played:hover {
-    background: #000000 url("../imgs/pauseWhite.gif") no-repeat;
-}
-
-.caPlayer .ps.paused {
+.caPlayer .ps.black.paused {
     background: url("../imgs/play.gif") no-repeat;
 }
 
-.caPlayer .ps.played {
+.caPlayer .ps.black.played {
     background: url("../imgs/pause.gif") no-repeat;
 }
+
+.caPlayer .paused {
+    background: url("../imgs/playWhite.gif") no-repeat;
+}
+
+.caPlayer .played {
+    background: url("../imgs/pauseWhite.gif") no-repeat;
+}
+
+
 
 #playlist {
     background: #EBEBEB;
@@ -233,7 +235,10 @@ p {
 
 /* Default Skin */
 /* Basic color */
-.caPlayer .ps.paused, .caPlayer .progress .bar .barPlaying, .caPlayer .ps.played, .caPlayer .vol .bar  {
+.caPlayer .paused,
+.caPlayer .progress .bar .barPlaying,
+.caPlayer .played,
+.caPlayer .vol .bar  {
     background-color: #ff8a00;
 }
 
@@ -245,4 +250,14 @@ p {
 /* Main Background */
 .caPlayer {
     background-color: #393933;
+}
+
+/* Hover Background Color */
+.caPlayer .paused:hover, .caPlayer .played:hover {
+    background-color: #000000;
+}
+
+/* Text Color Duration */
+.caPlayer .progress .currentTime,.caPlayer .progress .totalTime {
+
 }

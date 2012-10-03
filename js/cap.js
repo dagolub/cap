@@ -1,5 +1,5 @@
 var playerTPL = '<i class="caPlayer">' +
-                    '<i class="ps paused"></i>' +
+                    '<a href="#" class="ps paused"></a>' +
                     '<i class="next"></i>' +
                     '<i class="prev"></i>' +
                     '<i class="vol"><i class="bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></i></i>' +
@@ -14,13 +14,15 @@ var playerTPL = '<i class="caPlayer">' +
                  '</i>';
 
 var skinCSSRules = [
-                    '.caPlayer .ps.paused',
+                    '.caPlayer .paused',
                     '.caPlayer .progress .bar .barPlaying',
                     '.caPlayer .vol .bar',
-                    '.caPlayer .ps.played'
+                    '.caPlayer .played'
                    ];
+var skinCSSRulesMainBGH = ['.caPlayer .ps'];
 var skinCSSRulesMainBG = ['.caPlayer'];
 var skinCSSRulesVolumeBG = ['.caPlayer .vol .bar i','.caPlayer .vol'];
+var skinCSSRulesTextColor = ['.caPlayer .progress .currentTime','.caPlayer .progress .totalTime'];
 var sounds = [];
 
 $(document).ready(function(){
@@ -48,10 +50,13 @@ function initSounds() {
         var url = $(this).attr('src');
         var color = $(this).attr('color');
         var mainBG = $(this).attr('mainBG');
+        var mainBGH = $(this).attr('mainBGH');
         var volBG = $(this).attr('volBG');
+        var textColor = $(this).attr('textColor');
+        var playBlack = $(this).attr('playBlack');
 
         initSound(id, url);
-        applySkinColor(id,color, mainBG, volBG);
+        applySkinColor(id,color, mainBG, volBG, mainBGH, textColor, playBlack);
         bindEvents(id)
     });
 
@@ -99,16 +104,33 @@ function initSound(id, url){
     soundManager.createSound(soundConfig);
 }
 
-function applySkinColor(id,color,mainBG,volBG) {
+function applySkinColor(id, color, mainBG, volBG, mainBGH, textColor, playBlack) {
     $("#"+id).replaceWith($(playerTPL).attr('id',id));
-    for ( i=0; i < skinCSSRules.length; i++ ) {
+    for ( i = 0; i < skinCSSRules.length; i++ ) {
         $("#" + id  + skinCSSRules[i]).css('backgroundColor', color);
     }
-    for ( i=0; i < skinCSSRulesMainBG.length; i++ ) {
+    for ( i = 0; i < skinCSSRulesMainBG.length; i++ ) {
         $("#" + id  + skinCSSRulesMainBG[i]).css('backgroundColor', mainBG);
     }
-    for ( i=0; i < skinCSSRulesVolumeBG.length; i++ ) {
+    for ( i = 0; i < skinCSSRulesVolumeBG.length; i++ ) {
         $("#" + id  + skinCSSRulesVolumeBG[i]).css('backgroundColor', volBG);
+    }
+    for ( i = 0; i < skinCSSRulesMainBGH.length; i++ ) {
+        $("#" + id  + skinCSSRulesMainBGH[i]).hover(function(){
+            console.log("Прилетело нло"+mainBGH);
+            $(this).css('backgroundColor', mainBGH)
+        },function(){
+            console.log("Улитело нло"+color);
+            $(this).css('backgroundColor', color)
+        });
+    }
+
+    for ( i = 0; i < skinCSSRulesTextColor.length; i++ ) {
+        $("#" + id  + skinCSSRulesTextColor[i]).css('color', textColor);
+    }
+
+    if (playBlack == 'true') {
+        $("#" + id + " .ps").addClass('black');
     }
 }
 
